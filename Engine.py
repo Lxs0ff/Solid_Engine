@@ -87,8 +87,8 @@ def importVertices(file):
 vertices = importVertices("vertices.txt")
 
 x_speed = 0
-y_speed = 1
-z_speed = 0
+y_speed = 0
+z_speed = 1
 
 def renderMesh():
     window.fill((0,0,0))
