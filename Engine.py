@@ -49,14 +49,14 @@ elif fov > max_fov:
     fov = max_fov
 last_fov = fov
 
+distance = -5
+
 pygame.init()
 
 height = 600
 width = 800
 window_size = (width, height)
 window = pygame.display.set_mode(window_size, DOUBLEBUF|OPENGL)
-
-distance = -5
 
 def importEdges(file):
     with open(file, 'r') as f:
@@ -86,9 +86,9 @@ def importVertices(file):
 
 vertices = importVertices("vertices.txt")
 
-x_speed = 3
-y_speed = 1
-z_speed = 1
+x_speed = 1
+y_speed = 0
+z_speed = 0
 
 def renderMesh():
     window.fill((0,0,0))
