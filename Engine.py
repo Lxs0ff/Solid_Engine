@@ -90,6 +90,8 @@ x_speed = 0
 y_speed = 0
 z_speed = 1
 
+angle = 90
+
 def renderMesh():
     window.fill((0,0,0))
     glRotatef(1,x_speed,y_speed,z_speed)
@@ -101,7 +103,8 @@ def renderMesh():
     glEnd()
 
 gluPerspective(fov, (window_size[0]/window_size[1]), 0.1, 50.0)
-glTranslatef(0.0, 0.0, distance)
+glTranslatef(0.0, 10, distance)
+
 
 while True:
     for event in pygame.event.get():
