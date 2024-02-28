@@ -41,7 +41,7 @@ from OpenGL.GLU import *
 
 fov = int(input("Please enter the field of view (fov): \n"))
 min_fov = 30
-max_fov = 160
+max_fov = 700
 default_fov = (min_fov + max_fov) / 2
 if fov < min_fov:
     fov = min_fov
@@ -86,9 +86,13 @@ def importVertices(file):
 
 vertices = importVertices("vertices.txt")
 
+x_speed = 3
+y_speed = 1
+z_speed = 1
+
 def renderMesh():
     window.fill((0,0,0))
-    glRotatef(1, 3,1,1)
+    glRotatef(1,x_speed,y_speed,z_speed)
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
     glBegin(GL_LINES)
     for edge in edges:
