@@ -49,7 +49,7 @@ elif fov > max_fov:
     fov = max_fov
 last_fov = fov
 
-distance = -5
+distance = -(int(input("Please enter the distance from the camera to the object: \n")))
 
 pygame.init()
 
