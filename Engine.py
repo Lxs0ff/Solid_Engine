@@ -50,6 +50,9 @@ elif fov > max_fov:
 last_fov = fov
 
 pygame.init()
+pygame.font.init()
+
+font = pygame.font.Font(None, 12)
 
 height = 600
 width = 800
@@ -115,6 +118,7 @@ glTranslatef(cam_y, cam_x, cam_z)
 
 render_on = True
 
+pygame.display.set_caption("Solid 3D Engine")
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -122,6 +126,7 @@ while True:
             quit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_TAB:
+                glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
                 render_on = not render_on
             if event.key == pygame.K_r:
                 fov = default_fov
@@ -174,9 +179,18 @@ while True:
         glRotatef(-rotationy, 0, 1, 0)
         last_rotx = rotationx
         last_roty = rotationy
+
+    window.fill((0,0,0))
     if render_on == True:
         renderMesh()
     else:
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+        window.fill((0,0,0))
+    
+    if fov != last_fov:
+        text = "FOV: " + str(fov)
+        fov_text = font.render(text, True, (255, 255, 255))
+        window.blit(fov_text, (width + 50, height + 50))
+
     pygame.display.flip()
     pygame.time.delay(10)
