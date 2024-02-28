@@ -103,8 +103,7 @@ def renderMesh():
     glEnd()
 
 gluPerspective(fov, (window_size[0]/window_size[1]), 0.1, 50.0)
-glTranslatef(0.0, 10, distance)
-
+glTranslatef(0.0, 0.0, distance)
 
 while True:
     for event in pygame.event.get():
