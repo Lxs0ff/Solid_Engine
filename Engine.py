@@ -62,7 +62,10 @@ background.fill(pygame.color("#000000"))
 
 manager = pygame_gui.UIManager((width,height))
 
-reset_button = pygame_gui.
+reset_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 275), (100, 50)),text='Reset',manager=manager)
+
+
+exit_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 275), (100, 50)),text='EXIT',manager=manager)
 
 cam_x = 0
 cam_y = 0
@@ -138,11 +141,18 @@ while True:
             if event.key == pygame.K_TAB:
                 glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
                 render_on = not render_on
-            if event.key == pygame.K_r:
+            
+        if event.type == pygame_gui.UI_BUTTON_PRESSED:
+            if event.ui_element == reset_button:
                 fov = default_fov
                 cam_x = 0
                 cam_y = 0
                 cam_z = -5
+            if event.ui_element == exit_button:
+                pygame.quit()
+                quit()
+                
+            
             
             manager.process_events(event)
             
