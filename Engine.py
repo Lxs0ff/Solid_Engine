@@ -94,6 +94,7 @@ def importVertices(file):
     return vertices
 
 move_speed = 0.05
+mouse_speed = 0.05
 fov_amount = .3
 
 rotationx = 0
@@ -155,8 +156,8 @@ while True:
         pygame.mouse.set_visible(False)
         pygame.event.set_grab(True)
         mouse_x, mouse_y = pygame.mouse.get_rel()
-        rotationx = mouse_x * 0.1
-        rotationy = mouse_y * 0.1
+        rotationx = mouse_x * mouse_speed
+        rotationy = mouse_y * mouse_speed
     else:
         pygame.mouse.set_visible(True)
         pygame.event.set_grab(False)
