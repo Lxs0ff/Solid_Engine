@@ -188,10 +188,10 @@ while True:
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
         window.fill((0,0,0))
     
-    if fov != last_fov:
+    if fov != last_fov or not render_on:
         text = "FOV: " + str(fov)
         fov_text = font.render(text, True, (255, 255, 255))
-        window.blit(fov_text, (width + 50, height + 50))
+        window.blit(fov_text, (width - 50, height - 50))
 
     pygame.display.flip()
     pygame.time.delay(10)
