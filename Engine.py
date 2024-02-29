@@ -1,5 +1,6 @@
 import subprocess
 import math
+import time
 
 subprocess.run(["python3", "-m", "pip", "install", "--upgrade", "pip"])
 
@@ -31,7 +32,11 @@ try:
     import pygame_gui
     print("pygame_gui already installed")
 except:
-    print
+    print("please execute 'python3 -m pip install pygame_gui' in a cmd as it canot be installed automatically, then re run the engine")
+    print("Closing in 10 seconds...")
+    time.sleep(10)
+    exit()
+
 import pygame
 import OpenGL
 from pygame.locals import *
