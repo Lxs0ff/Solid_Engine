@@ -62,11 +62,14 @@ background.fill(pygame.color("#000000"))
 
 manager = pygame_gui.UIManager((width,height))
 
-reset_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 275), (100, 50)),text='Reset',manager=manager)
+button_rect = pygame.Rect((350, 275), (100, 50))
 
+console_rect = pygame.Rect
+reset_button = pygame_gui.elements.UIButton(relative_rect=button_rect,text='Reset',manager=manager)
 
-exit_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 275), (100, 50)),text='EXIT',manager=manager)
+exit_button = pygame_gui.elements.UIButton(relative_rect=button_rect,text='EXIT',manager=manager)
 
+console_window = pygame_gui.windows.ui_console_window.UIConsoleWindow(manager=manager,relative_rect=)
 cam_x = 0
 cam_y = 0
 cam_z = -5
@@ -150,9 +153,16 @@ while True:
             if event.ui_element == exit_button:
                 pygame.quit()
                 quit()
-        if event.type == pygame_gui.UI_COLOUR_PICKER_COLOUR_PICKED:
-            if event.ui_element == line_picker:
-                line_color = event.value
+        if event.type == pygame_gui.UI_CONSOLE_COMMAND_ENTERED:
+            if event.ui_element == console_window:
+                if 'loadmodel' in event.command:
+                    cmd = event.command
+                    cmd_params = cmd.replace('loadmodel','')
+                    if '.stl' in cmd_params:
+                        #continue loading new model
+                    else:
+                        #send output to tell to put .stl at end of filename
+                    
                 
             
             
