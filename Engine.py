@@ -1,11 +1,7 @@
 import subprocess
 import math
 
-try:
-    subprocess.run(["python3", "-m", "pip", "install", "--upgrade", "pip"])
-    print("Pip has been updated")
-except:
-    pass
+subprocess.run(["python3", "-m", "pip", "install", "--upgrade", "pip"])
 
 try:
     import pygame
@@ -37,7 +33,6 @@ from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
-
 
 min_fov = 30
 max_fov = 700
@@ -120,6 +115,7 @@ glTranslatef(cam_y, cam_x, cam_z)
 render_on = True
 
 pygame.display.set_caption("Solid 3D Engine")
+#pygame.display.set_icon()
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
