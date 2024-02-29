@@ -51,14 +51,18 @@ fov = default_fov
 last_fov = fov
 
 pygame.init()
-pygame.font.init()
-
-font = pygame.font.Font(None, 12)
 
 height = 600
 width = 800
 window_size = (width, height)
 window = pygame.display.set_mode(window_size, DOUBLEBUF|OPENGL,pygame.RESIZABLE)
+
+background = pygame.Surface((width,height))
+background.fill(pygame.color("#000000"))
+
+manager = pygame_gui.UIManager((width,height))
+
+reset_button = pygame_gui.
 
 cam_x = 0
 cam_y = 0
@@ -122,7 +126,10 @@ render_on = True
 
 pygame.display.set_caption("Solid 3D Engine")
 #pygame.display.set_icon()
+
+clock = pygame.time.clock()
 while True:
+    time_delta = clock.tick(60)/1000.0
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -136,6 +143,9 @@ while True:
                 cam_x = 0
                 cam_y = 0
                 cam_z = -5
+            
+            manager.process_events(event)
+            
     keys = pygame.key.get_pressed()
     if keys[pygame.K_SPACE]:
         cam_x += move_speed
@@ -184,16 +194,15 @@ while True:
         last_roty = rotationy
 
     window.fill((0,0,0))
+    manager.update(time_delta)
+    
     if render_on == True:
         renderMesh()
     else:
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-        window.fill((0,0,0))
+        window.blit(background,(0,0))
+        manager.draw_ui(window)
     
-    if fov != last_fov or not render_on:
-        text = "FOV: " + str(fov)
-        fov_text = font.render(text, True, (255, 255, 255))
-        window.blit(fov_text, (width - 50, height - 50))
-
+    pygame.display.update
     pygame.display.flip()
     pygame.time.delay(10)
