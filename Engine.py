@@ -27,6 +27,11 @@ except ImportError:
     import numpy as np
     print("Numpy has been installed")
 
+try:
+    import pygame_gui
+    print("pygame_gui already installed")
+except:
+    print
 import pygame
 import OpenGL
 from pygame.locals import *
@@ -38,10 +43,6 @@ min_fov = 30
 max_fov = 700
 default_fov = 90
 fov = default_fov
-if fov < min_fov:
-    fov = min_fov
-elif fov > max_fov:
-    fov = max_fov
 last_fov = fov
 
 pygame.init()
