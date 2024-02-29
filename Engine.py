@@ -141,7 +141,6 @@ while True:
             if event.key == pygame.K_TAB:
                 glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
                 render_on = not render_on
-            
         if event.type == pygame_gui.UI_BUTTON_PRESSED:
             if event.ui_element == reset_button:
                 fov = default_fov
@@ -151,6 +150,9 @@ while True:
             if event.ui_element == exit_button:
                 pygame.quit()
                 quit()
+        if event.type == pygame_gui.UI_COLOUR_PICKER_COLOUR_PICKED:
+            if event.ui_element == line_picker:
+                line_color = event.value
                 
             
             
