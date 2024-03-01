@@ -99,7 +99,7 @@ class CommandWindow:
         self.command_history.append(command)
         if command == "exit":
             pygame.quit()
-            exit()
+            os._exit()
         elif command == "clear":
             self.command_history.clear()
         elif 'loadmodel' in command:
@@ -222,7 +222,7 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            exit()
+            os._exit()
         
         renderer.process_event(event)
 
