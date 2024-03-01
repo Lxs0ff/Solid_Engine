@@ -1,60 +1,21 @@
-import subprocess
-import math
-import time
+import os
 
-subprocess.run(["python3", "-m", "pip", "install", "--upgrade", "pip"])
-
-try:
-    import pygame
-    print("Pygame already installed")
-except ImportError:
-    subprocess.run(["python3", "-m", "pip", "install", "pygame"])
-    import pygame
-    print("Pygame has been installed")
-
-try:
-    import OpenGL
-    print("PyOpenGL already installed")
-except ImportError:
-    subprocess.run(["python3", "-m", "pip", "install", "pyopengl"])
-    import OpenGL
-    print("PyOpenGL has been installed")
-
-try:
-    import numpy as np
-    print("Numpy already installed")
-except ImportError:
-    subprocess.run(["python3", "-m", "pip", "install", "numpy"])
-    import numpy as np
-    print("Numpy has been installed")
-
-try:
-    import imgui
-    print("imgui already installed")
-except:
-    subprocess.run(["python3", "-m", "pip", "install", "imgui"])
-    import imgui
-    print("imgui has been installed")
-
-try:
-    import numpy as np
-    print("numpy already installed")
-except ImportError:
-    subprocess.run(['python3','-m','pip', 'install', 'numpy'])
-    import numpy as np
-    print("numpy has been installed")
-
-try:
-    from stl import mesh
-    print("stl already installed")
-except ImportError:
-    subprocess.run(['python3','-m','pip', 'install', 'numpy-stl'])
-    from stl import mesh
-    print("stl has been installed")
-
+def checkInstalled(library):
+    try:
+        __import__(library)
+        print(f"{library} is installed")
+    except ImportError:
+        print(f"{library} is not installed")
+        print(f"Installing {library}...")
+        os.system(f'cmd /c "pip install {library}"')
+        print(f"{library} has been installed")
+checkInstalled("pygame")
+checkInstalled("pyopengl")
+checkInstalled("imgui")
+checkInstalled("numpy")
+checkInstalled("numpy-stl")
 
 import pygame
-import OpenGL
 from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLUT import *
@@ -62,6 +23,8 @@ from OpenGL.GLU import *
 import imgui
 from imgui.integrations.pygame import PygameRenderer
 import ctypes
+import numpy as np
+import stl as mesh
 
 def convert_stl_to_txt(stl_file):
         stl_mesh = mesh.Mesh.from_file(stl_file)
@@ -136,7 +99,7 @@ class CommandWindow:
         self.command_history.append(command)
         if command == "exit":
             pygame.quit()
-            quit()
+            exit()
         elif command == "clear":
             self.command_history.clear()
         elif 'loadmodel' in command:
@@ -259,7 +222,7 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            quit()
+            exit()
         
         renderer.process_event(event)
 
